@@ -103,8 +103,8 @@ def get_df_final(product_link_total_category):
                 # sku-old-price
                 product_old_price = list(map(lambda x: float(x.find('div', class_='sku-old-price').get_text(strip=True).replace('$', '')) if x.find('div', class_='sku-old-price') else None, [product]))
 
-                # product categorie:
-                product_category = categorie                
+                # product category:
+                product_category = [', '.join(list(map(lambda x: [subcategory.get_text(strip=True) for subcategory in x.find_all('a')] if x else None, [soup.find('nav', class_='current-category')]))[0])]     
 
                 # product infos
                 product_info = {'product_id': product_id, 'product_name': product_name, 'product_brand': product_brand, 'product_img_link': product_img_link,
